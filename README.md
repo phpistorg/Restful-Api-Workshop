@@ -16,6 +16,8 @@ Konuşmacı
 
 Yer & Mekan
 -----------
+İstanbul Hackerspace
+
 Eğitim Mah. Ömerbey (Çıkmaz) Sokak No:19/B Kadıköy/ISTANBUL
 (1.Açıkgöz caddesindeki, Kadıköy Adliyesi D Blok yanındaki çıkmaz sokak)
 
