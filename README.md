@@ -1,6 +1,6 @@
 php-ist: Restful API Design [Workshop]
 ====
-15 Şubat 2015 'te [php-ist](https://github.com/phpistorg) grubu olarak Restful API Design konulu sunumu düzenliyoruz.
+15 Şubat 2014 'te [php-ist](https://github.com/phpistorg) grubu olarak Restful API Design konulu sunumu düzenliyoruz.
 
 Sunum içeriği
 -------------
