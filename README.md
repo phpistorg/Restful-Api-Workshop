@@ -1,6 +1,6 @@
 Phpist: Restful API Design [Workshop]
 ====
-15 Şubat 2015 'te [Phpist][githubgroup-phpist] grubu olarak bu [Osman Üngür][githubuser-o] 'ün sunumu ile Restful API Design konulu sunumu düzenliyoruz.
+15 Şubat 2015 'te Phpist grubu olarak Restful API Design konulu sunumu düzenliyoruz.
 
 Sunum içeriği
 -------------
@@ -10,6 +10,10 @@ Sunum içeriği
   - REST Servislerimize nasıl erişiriz? [(Guzzle)][guzzle] 
   - Testing [(Postman)][postman]
 
+Konuşmacı
+---------
+  - [Osman Üngür][githubuser-o]
+
 Yer & Mekan
 -----------
 Eğitim Mah. Ömerbey (Çıkmaz) Sokak No:19/B Kadıköy/ISTANBUL
@@ -17,7 +21,8 @@ Eğitim Mah. Ömerbey (Çıkmaz) Sokak No:19/B Kadıköy/ISTANBUL
 
 Söğütlüçeşme metrobüs/tren istasyonundan, evlendirme dairesinin önünden geçip, ışıklardan karşıya geçtiğinizde, dere boyunca derenin sağından ilerleyin. Yol bittiğinde sağa ve sonra ilk sola dönün. Çıkmaz sokağın sonunda.
 
-[githubuser-phpist]: https://github.com/phpistorg
+
+
 [githubuser-o]: https://www.github.com/o
 [silex]: http://silex.sensiolabs.org
 [guzzle]: http://docs.guzzlephp.org
