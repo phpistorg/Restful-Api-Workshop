@@ -1,0 +1,15 @@
+{
+    "name": "o/silex-app",
+    "description": "Sample REST application written in Silex",
+    "require": {
+        "silex/silex": "~1.1",
+        "doctrine/dbal": "~2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Osman Ungur",
+            "email": "osmanungur@gmail.com"
+        }
+    ]
+}
