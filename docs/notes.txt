@@ -1,0 +1,114 @@
+Why REST?
+
+Separation of concerns and portability
+
+    * Clients are not concerned with data storage
+    * Servers are not concerned with the user interface or user state
+    * Servers and clients may also be replaced and developed independently
+    
+Scalability and performance
+
+    * Designing clustered applications with REST interfaces is not trivial
+    * Easier to scale, boht horizontally and 
+    
+Caching
+
+    * Clients can cache responses
+    * Responses implicitly or explicitly, define themselves as cacheable
+    * Well-managed caching partially or completely eliminates some client–server interactions
+
+Simplicity
+
+Key principle: Separating your API into logical resources. These resources are manipulated using HTTP requests where the method has specific meaning.
+
+Plural nouns, not verbs.
+
+Collection resource
+/users
+
+Instance resource
+/users/1
+
+Dont do this, Think simple
+getUsers
+createUser
+verifyEmail
+updateComment
+
+Base URL: api.domain.com vs domain.com/api/prod
+
+Versioning: Url vs mediatype
+application/json;app&v=1
+api.domain.com/v1
+
+POST
+    Create a resource within a given collection
+GET
+    Retrieve a resource
+PUT / PATCH
+    Update a resource
+DELETE
+    Delete a resource
+
+GET /users - Retrieves a list of users
+GET /users/1 - Retrieves a specific user
+POST /users - Creates a new user
+PUT /users/1 - Updates user #1
+PATCH /users/1 - Partially updates user #1 | /users/1/lock, /users/1/ban
+DELETE /users/1 - Deletes user #1
+
+GET /users/1/comments - Retrieves list of comments for user #1
+GET /users/1/comments/10 - Retrieves message #10 for user #1
+POST /users/1/comments - Creates a new message in user #1
+PUT /users/1/comments/10 - Updates message #10 for user #1
+PATCH /users/1/comments/10 - Partially updates message #10 for user #1
+DELETE /users/1/comments/10 - Deletes message #10 for user #1
+
+Aliases for common queries: /comments/needs_moderation or POST /users/1/promote
+
+Always version your API. Versioning helps you iterate faster and prevents invalid requests from hitting updated endpoints.
+
+JSON is preferred, human readable, no parsing needed for Javascript clients
+
+The most sensible option here would be to append a .json or .xml extension to the endpoint URL. (Content negotiation sucks)
+
+A timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+
+Filtering: GET /users?active=true
+
+Sorting: GET /users?sort=-id
+
+Limiting: GET /users?limit=100&page=3
+
+Field filtering: GET /users?fields=name,surname,email
+
+The API should always return sensible HTTP status codes. API errors typically break down into 2 types: 400 series status codes for client issues & 500 series status codes for server issues.
+
+200 OK - Response to a successful GET, PUT, PATCH or DELETE. Can also be used for a POST that doesn't result in a creation.
+201 Created - Response to a POST that results in a creation. Should be combined with a Location header pointing to the location of the new resource
+204 No Content - Response to a successful request that won't be returning a body (like a DELETE request)
+304 Not Modified - Used when HTTP caching headers are in play
+400 Bad Request - The request is malformed, such as if the body does not parse
+401 Unauthorized - When no or invalid authentication details are provided. Also useful to trigger an auth popup if the API is used from a browser
+403 Forbidden - When authentication succeeded but authenticated user doesn't have access to the resource
+404 Not Found - When a non-existent resource is requested
+405 Method Not Allowed - When an HTTP method is being requested that isn't allowed for the authenticated user
+410 Gone - Indicates that the resource at this end point is no longer available. Useful as a blanket response for old API versions
+415 Unsupported Media Type - If incorrect content type was provided as part of the request
+422 Unprocessable Entity - Used for validation errors
+429 Too Many Requests - When a request is rejected due to rate limiting
+
+A RESTful API should be stateless. This means that request authentication should not depend on cookies or sessions. Instead, each request should come with some sort authentication credentials.
+
+Ids should be opaque, something like uuid or base64, must be unique
+
+Docs should be easy to find
+
+Use gzip, no pretty print default, camelCase for field names
+
+An API that accepts JSON encoded POST, PUT & PATCH requests should also require the Content-Type header be set to application/json or throw a 415 Unsupported Media Type HTTP status code.
+
+ETag: When generating a request, include a HTTP header ETag containing a hash or checksum of the representation. This value should change whenever the output representation changes. Now, if an inbound HTTP requests contains a If-None-Match header with a matching ETag value, the API should return a 304 Not Modified status code instead of the output representation of the resource.
+
+Last-Modified: This basically works like to ETag, except that it uses timestamps. The response header Last-Modified contains a timestamp in RFC 1123 format which is validated against If-Modified-Since. Note that the HTTP spec has had 3 different acceptable date formats and the server should be prepared to accept any one of them.
+
